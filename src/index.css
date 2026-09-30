@@ -1,0 +1,88 @@
+@import "tailwindcss";
+:root {
+  --color-primary: #171717;
+  --color-secondary: #fbbf24;
+  --color-text: #f1f5f9;
+  --accent-primary: #10b981;
+  --darker-primary: #10b981a2;
+}
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 4s linear infinite;
+  }
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--color-primary);
+}
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-emerald {
+  background: linear-gradient(to right, #34d399, #ffffff, #34d399);
+  background-size: 200% 200%;
+  animation: gradient-x 3s ease infinite;
+}
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 6px var(--accent-primary), 0 0 12px var(--accent-primary);
+  }
+  50% {
+    box-shadow: 0 0 14px var(--accent-primary), 0 0 28px var(--accent-primary);
+  }
+}
+
+.btn-cut {
+  clip-path: polygon(8% 0, 100% 0, 100% 80%, 92% 100%, 0 100%, 0 20%);
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1e0;
+}
+
+/* handle */
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 8px;
+  border: 2px solid var(--color-primary);
+}
+
+/* handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
+
+/* For firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--darker-primary) #0b0b0b50;
+  scroll-behavior: smooth;
+}
+
+/* src/index.css or a global styles file */
+.link-underline {
+  @apply relative no-underline text-[var(--color-text)] text-lg font-semibold
+         after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+         after:w-full after:bg-[var(--color-text)] after:origin-left
+         after:scale-x-0 after:transition-transform after:duration-300
+         hover:after:scale-x-100;
+}
