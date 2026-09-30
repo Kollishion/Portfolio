@@ -41,10 +41,10 @@ const Home = () => {
   };
 
   return (
-    <div className="relative min-h-[88vh] flex flex-col md:flex-row items-start md:items-center gap-10 md:gap-16 lg:gap-24 md:pr-16 py-10">
-      <div className="absolute top-1/2 left-0 w-[400px] h-[160px] -translate-y-1/2 bg-green-400/40 rounded-full blur-[150px] pointer-events-none -z-10 animate-glow" />
+    <div className="relative min-h-[88vh] flex flex-col md:flex-row items-start md:items-center gap-10 md:gap-16 lg:gap-24 md:pr-16 py-10 isolate">
+      <div className="absolute top-1/2 left-0 w-[400px] h-[160px] -translate-y-1/2 bg-green-400/40 rounded-full blur-[150px] pointer-events-none z-2 animate-glow" />
 
-      <div className="shrink-0 h-[340px] md:h-[60vh] max-h-[520px] aspect-[4/5] p-[3px] rounded-r-full bg-gradient-to-br from-green-400 to-emerald-900 shadow-[0_0_60px_rgba(74,222,128,0.25)]">
+      <div className="relative z-10 shrink-0 h-[340px] md:h-[60vh] max-h-[520px] aspect-[4/5] p-[3px] rounded-r-full bg-gradient-to-br from-green-400 to-emerald-900 shadow-[0_0_60px_rgba(74,222,128,0.25)]">
         <div className="w-full h-full rounded-r-full overflow-hidden bg-[#141414]">
           <img
             src={Hero}
@@ -55,7 +55,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="flex-1 px-6 md:px-0">
+      <div className="relative z-10 flex-1 px-6 md:px-0">
         <h1
           style={displayFont}
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl uppercase leading-none tracking-wide text-white"
