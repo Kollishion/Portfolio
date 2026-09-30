@@ -11,6 +11,7 @@ const App = () => {
     <>
       <div>
         <Navbar />
+        <FireflyLine />
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
