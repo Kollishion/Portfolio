@@ -12,14 +12,14 @@ const Navbar = () => {
     "after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:bg-green-500";
 
   return (
-    <nav className="w-full sticky top-4 z-20 px-[5vw] font-sans">
+    <nav className="w-full sticky top-4 z-20 px-[4.5vw] font-sans">
       <div className="backdrop-blur-md bg-[var(--color-bg)] shadow-[0_1px_10px_var(--accent-primary)]  rounded-2xl">
         <div className="container mx-auto px-8 py-3 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <img
               src={Logo}
               alt="Logo"
-              className="w-[40px] sm:w-[60px] md:w-[80px] object-contain"
+              className="w-10 sm:w-15 md:w-17.5 object-contain"
             />
           </div>
 

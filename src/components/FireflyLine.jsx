@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   motion,
   useScroll,
@@ -7,15 +7,18 @@ import {
   useMotionTemplate,
 } from "framer-motion";
 import fireflyIcon from "../assets/firefly.svg";
-
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 const sectionIds = ["about", "projects", "skills", "contact"];
 const markerColors = ["#bbf7d0", "#86efac", "#4ade80", "#34d399", "#10b981"];
-const triggerOffset = 100;
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export default function FireflyLine() {
   const { scrollYProgress } = useScroll();
   const [markers, setMarkers] = useState([0, 0.25, 0.5, 0.75, 1]);
-  const [litCount, setLitCount] = useState(0);
+  const [litCount, setLitCount] = useState(1);
 
   const progress = useSpring(scrollYProgress, {
     stiffness: 120,
@@ -29,51 +32,46 @@ export default function FireflyLine() {
     ["#86efac", "#10b981", "#065f46"],
   );
 
+  useGSAP(() => {
+    const triggers = sectionIds
+      .map((id) =>
+        ScrollTrigger.create({
+          trigger: `#${id}`,
+          start: "clamp(top 100px)",
+          markers: true,
+        }),
+      )
+      .filter(Boolean);
+
+    const syncMarkers = () => {
+      const max = ScrollTrigger.maxScroll(window);
+      setMarkers([0, ...triggers.map((t) => Math.min(t.start / max, 1))]);
+    };
+
+    const syncLit = () => {
+      const y = window.scrollY;
+      setLitCount(1 + triggers.filter((t) => y >= t.start - 1).length);
+    };
+
+    const onRefresh = () => {
+      syncMarkers();
+      syncLit();
+    };
+
+    ScrollTrigger.create({ start: 0, end: "max", onUpdate: syncLit });
+    ScrollTrigger.addEventListener("refresh", onRefresh);
+    ScrollTrigger.refresh();
+
+    return () => ScrollTrigger.removeEventListener("refresh", onRefresh);
+  });
+
   const top = useTransform(progress, (v) => `${v * 100}%`);
   const remaining = useTransform(progress, (v) => (1 - v) * 100);
   const clipPath = useMotionTemplate`inset(0 0 ${remaining}% 0)`;
   const iconGlow = useMotionTemplate`drop-shadow(0 0 6px ${color}) drop-shadow(0 0 14px ${color})`;
 
-  useEffect(() => {
-    const measure = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      if (max <= 0) return;
-      const next = [0];
-      sectionIds.forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) {
-          const y =
-            el.getBoundingClientRect().top + window.scrollY - triggerOffset;
-          next.push(Math.min(Math.max(y / max, 0), 1));
-        }
-      });
-      setMarkers(next);
-    };
-
-    measure();
-    document.fonts?.ready.then(measure);
-    window.addEventListener("resize", measure);
-    window.addEventListener("load", measure);
-    const observer = new ResizeObserver(measure);
-    observer.observe(document.body);
-
-    return () => {
-      window.removeEventListener("resize", measure);
-      window.removeEventListener("load", measure);
-      observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    const update = (v) => {
-      setLitCount(markers.filter((m) => v >= m - 0.001).length);
-    };
-    update(scrollYProgress.get());
-    return scrollYProgress.on("change", update);
-  }, [markers, scrollYProgress]);
-
   return (
-    <div className="fixed right-6 top-6 bottom-6 z-10 w-[2px] bg-white/10 pointer-events-none">
+    <div className="fixed right-6 top-6 bottom-6 z-10 bg-white/10 pointer-events-none">
       <motion.div
         className="absolute inset-0"
         style={{

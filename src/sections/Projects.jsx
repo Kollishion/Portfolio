@@ -55,7 +55,7 @@ const displayFont = {
 
 const Projects = () => {
   return (
-    <section id="projects" className="px-6 md:px-16 py-20 cursor-pointer">
+    <section id="projects" className="px-6 md:px-16 py-20">
       <h2
         style={displayFont}
         className="text-4xl md:text-6xl uppercase tracking-wide text-white mb-10"
@@ -67,15 +67,13 @@ const Projects = () => {
         {projects.map((p) => (
           <article
             key={p.title}
-            className={`relative overflow-hidden rounded-xl border border-white/10 bg-[#141414] hover:border-green-400/60 transition-colors duration-300 ${
-              sizes[p.size] || ""
-            }`}
+            className="relative overflow-hidden rounded-xl border border-white/10 bg-[#141414]"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 to-[#0a0a0a] flex items-center justify-center text-slate-600 text-sm">
+            <div className="absolute inset-0 bg-linear-to-br from-emerald-900 to-[#0a0a0a] flex items-center justify-center text-slate-600 text-sm">
               Screenshot
             </div>
 
-            <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
+            <div className="absolute inset-x-0 bottom-0 p-4 bg-linear-to-t from-black/90 via-black/60 to-transparent">
               <h3 className="text-lg font-semibold text-white">{p.title}</h3>
 
               {p.description && (
@@ -111,4 +109,3 @@ const Projects = () => {
 };
 
 export default Projects;
-
