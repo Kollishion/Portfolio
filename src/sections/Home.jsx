@@ -2,7 +2,7 @@ import Hero from "../assets/Hero2.png";
 import { TypeAnimation } from "react-type-animation";
 import HeroButton from "../components/Button";
 import { HashLink } from "react-router-hash-link";
-
+import resume from "../assets/Abhishek_Bose_Resume.pdf";
 const displayFont = {
   fontFamily: '"Anton", Impact, "Arial Narrow Bold", sans-serif',
 };
@@ -116,8 +116,8 @@ const Home = () => {
             <LinkedinIcon />
           </a>
           <a
-            href="/resume.pdf"
-            download
+            href={resume}
+            download="Abhishek_Bose_Resume.pdf"
             className="text-sm font-medium border-b border-slate-500 hover:text-green-400 hover:border-green-400 transition-colors"
           >
             Download resume
