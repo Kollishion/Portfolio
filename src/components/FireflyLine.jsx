@@ -10,8 +10,15 @@ import fireflyIcon from "../assets/firefly.svg";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-const sectionIds = ["about", "projects", "skills", "contact"];
-const markerColors = ["#bbf7d0", "#86efac", "#4ade80", "#34d399", "#10b981"];
+const sectionIds = ["about", "skills", "experience", "projects", "contact"];
+const markerColors = [
+  "#bbf7d0",
+  "#86efac",
+  "#4ade80",
+  "#34d399",
+  "#10b981",
+  "#2dd4bf",
+];
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -38,7 +45,6 @@ export default function FireflyLine() {
         ScrollTrigger.create({
           trigger: `#${id}`,
           start: "clamp(top 100px)",
-          markers: true,
         }),
       )
       .filter(Boolean);

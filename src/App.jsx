@@ -6,6 +6,8 @@ import Projects from "./sections/Projects.jsx";
 import Skills from "./sections/Skills.jsx";
 import { Route, Routes } from "react-router-dom";
 import FireflyLine from "./components/FireflyLine.jsx";
+import Experience from "./sections/Experience.jsx";
+
 const App = () => {
   return (
     <>
@@ -16,8 +18,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
         </Routes>
         <About />
-        <Projects />
         <Skills />
+        <Experience />
+        <Projects />
         <Contact />
       </div>
     </>

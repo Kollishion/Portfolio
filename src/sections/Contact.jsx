@@ -60,11 +60,11 @@ const Contact = () => {
             Drop me a line
           </h3>
           <a
-            href="mailto:your@email.com"
+            href="mailto:abhishekabcbose@gmail.com"
             className="mt-4 flex items-center justify-between rounded-full bg-green-400 pl-6 pr-2 py-2"
           >
             <span className="text-sm font-semibold uppercase text-black">
-              your@email.com
+              abhishekabcbose@gmail.com
             </span>
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black text-green-400">
               <FaArrowRight className="rotate-45" />
@@ -93,7 +93,7 @@ const Contact = () => {
         </span>
 
         <a
-          href="/resume.pdf"
+          href="/Users/abhis/Desktop/Projects/Abhishek_Bose_Portfolio/src/assets/Abhishek_Bose_Resume.pdf"
           download
           className="underline underline-offset-2 md:mx-auto w-fit"
         >

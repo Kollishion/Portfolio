@@ -27,11 +27,14 @@ const Navbar = () => {
             <HashLink smooth to="#about" className={linkUnderlineClass}>
               About
             </HashLink>
-            <HashLink smooth to="#projects" className={linkUnderlineClass}>
-              Projects
-            </HashLink>
             <HashLink smooth to="#skills" className={linkUnderlineClass}>
               Skills
+            </HashLink>
+            <HashLink smooth to="#experience" className={linkUnderlineClass}>
+              Experience
+            </HashLink>
+            <HashLink smooth to="#projects" className={linkUnderlineClass}>
+              Projects
             </HashLink>
             <HashLink
               smooth
